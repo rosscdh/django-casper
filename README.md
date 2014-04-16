@@ -150,7 +150,7 @@ class MyProjectPageTestCase(BaseCasperJs):
         #
         # if your path was:
         # project/tests/file.py 
-        # then the casper-tests folder is located at
+        # then the casper-tests folder and js file should be created at
         # project/tests/casper-tests/url_to_test.js
         #
         url = reverse('project:url_to_test')
