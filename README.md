@@ -132,6 +132,38 @@ Then access these keyword arguments from the JS file:
         }
     );
 
+
+## Using the helper
+
+```
+from casper.helpers import BaseCasperJs
+
+
+class MyProjectPageTestCase(BaseCasperJs):
+    def test_my_page_js(self):
+        # login as a user - use use djangos LiveServerTestCase in casper so this
+        # is available
+        self.client.login(username=user.username, password=self.password)
+
+        # the js_file in this example is located in "casper-tests" which is a
+        # folder the same directory as this test file
+        #
+        # if your path was:
+        # project/tests/file.py 
+        # then the casper-tests folder is located at
+        # project/tests/casper-tests/url_to_test.js
+        #
+        url = reverse('project:url_to_test')
+        casper_result = self.load_casper_file(js_file='url_to_test.js',
+                                              test_label='Test the Project page',
+                                              url=url)
+
+        # evaluate the result
+        self.assertTrue(casper_result)
+
+```
+
+
 ## Bypassing log-in procedure
 
 When testing parts of the website for which the client needs to be logged in,
